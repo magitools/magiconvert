@@ -12,6 +12,7 @@
 	let imgHeight = 0;
 	let imgWidth = 0;
 	let locked = false;
+	let loading = false;
 	let format: string;
 	let placeholderImg: HTMLImageElement;
 
@@ -20,6 +21,11 @@
 			imgHeight = placeholderImg.height;
 			imgWidth = placeholderImg.width;
 		};
+	}
+
+	$: if (form) {
+		loading = false;
+		locked = false;
 	}
 
 	$: if (files && files.length > 0) {
@@ -37,8 +43,8 @@
 		};
 	}
 
-	const handleSubmit: SubmitFunction = async ({ controller }) => {
-		locked = true;
+	const handleSubmit: SubmitFunction = async () => {
+		loading = true;
 	};
 
 	const convertBase64ToBlob = (b64: string) => {
@@ -58,7 +64,7 @@
 	};
 </script>
 
-<div class="w-full h-full flex flex-col items-center">
+<div class="w-full h-full flex justify-center gap-4  items-center">
 	<div class="card w-96 shadow-xl">
 		<form
 			action="/?/convertImage"
@@ -118,13 +124,19 @@
 				<input type="hidden" name="originalHeight" id="originalHeight" bind:value={imgHeight} />
 				<input type="hidden" name="originalWidth" id="originalWidth" bind:value={imgWidth} />
 				<div class="card-actions justify-end">
-					<button class="btn btn-primary" type="submit" disabled={locked || !files}>send</button>
+					<button class="btn btn-primary {loading ? 'loading' : ''}" type="submit" disabled={locked || !files || loading}>send</button>
 				</div>
 			</div>
 		</form>
 	</div>
+	{#if loading}
+	<div class="w-full flex flex-col justify-center items-center h-full absolute top-0 left-0 z-30 bg-base-100/60 space-y-4">
+		<p>Converting Image, please wait...</p>
+		<div class="w-48 h-48 rounded-full animate-spin border-4 border-current border-t-transparent"></div>
+	</div>
+	{/if}
 	{#if placeholderImg && !form}
-		<div class="card shadow-xl w-2/3 h-1/3">
+		<div class="card shadow-xl w-96">
 			<figure><img src={placeholderImg.src} alt="result" /></figure>
 			<div class="card-body">
 				<h2 class="card-title">This is the image you selected</h2>
@@ -154,7 +166,7 @@
 				fallDistance="100vh"
 			/>
 		</div>
-		<div class="card shadow-xl w-2/3 h-1/3">
+		<div class="card shadow-xl w-96">
 			<figure><img src={form.image} alt="result" /></figure>
 			<div class="card-body">
 				<h2 class="card-title">Here's the Image</h2>
