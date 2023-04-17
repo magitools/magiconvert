@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import type { SubmitFunction } from '$app/forms';
+	import { formatList } from '$lib/utils';
 	import { Confetti } from 'svelte-confetti';
 
 	export let form;
@@ -11,6 +12,7 @@
 	let imgHeight = 0;
 	let imgWidth = 0;
 	let locked = false;
+	let format: string;
 	let placeholderImg: HTMLImageElement;
 
 	$: if (placeholderImg) {
@@ -103,6 +105,16 @@
 						disabled={locked}
 					/>
 				</div>
+				<div class="form-control">
+					<label for="format">
+						<span class="label-text">Format</span>
+					</label>
+					<select class="select" name="format" id="format" bind:value={format}>
+						{#each formatList as format}
+							<option value="{format}">{format}</option>
+						{/each}
+					</select>
+				</div>
 				<input type="hidden" name="originalHeight" id="originalHeight" bind:value={imgHeight} />
 				<input type="hidden" name="originalWidth" id="originalWidth" bind:value={imgWidth} />
 				<div class="card-actions justify-end">
@@ -148,7 +160,7 @@
 				<h2 class="card-title">Here's the Image</h2>
 				<div class="card-actions justify-end">
 					<a
-						download="image.webp"
+						download="image.{format}"
 						href={window.URL.createObjectURL(convertBase64ToBlob(form.image))}
 						class="btn btn-success">Download</a
 					>

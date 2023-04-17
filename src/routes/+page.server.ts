@@ -10,7 +10,8 @@ export const actions = {
         console.log(image)
         const width = parseInt(data.get("width")) === 0 ? data.get("originalWidth") : data.get("width")
         const height = parseInt(data.get("height")) === 0 ? data.get("originalHeight") : data.get("height")
-        const result = await sharp(image).resize({width: parseInt(width), height: parseInt(height)}).webp().toBuffer()
+        const format = data.get("format");
+        const result = await sharp(image).resize({width: parseInt(width), height: parseInt(height)}).toFormat(format!).toBuffer()
         return {
             success: true,
             image: `data:image/webp;base64,${result.toString("base64")}`
