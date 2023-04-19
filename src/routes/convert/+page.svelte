@@ -5,8 +5,6 @@
 	import { formatList } from '$lib/utils';
 	import { Confetti } from 'svelte-confetti';
 
-	export let form;
-
 	let files: FileList;
 	let height = 0;
 	let width = 0;
@@ -24,14 +22,16 @@
 		};
 	}
 
-	$: if (form) {
+	$: if ($page.form) {
 		loading = false;
 		locked = false;
 	}
 
 	$: if (files && files.length > 0) {
+		
 		const reader = new FileReader();
 		locked = true;
+		console.log($page.form)
 		reader.readAsDataURL(files[0]);
 		reader.onload = (e) => {
 			if (e.target && e.target.result) {
@@ -66,38 +66,40 @@
 </script>
 
 <div class="w-full h-full flex justify-center gap-4 items-center">
-	<div class="card w-96 shadow-xl">
+	<div class="card w-1/3 shadow-xl">
 		<form
 			method="post"
 			enctype="multipart/form-data"
 			use:enhance={handleSubmit}
 		>
 			<div class="card-body">
-				<div class="form-control">
-					<label for="height" class="label">
-						<span class="label-text">Height</span>
-					</label>
-					<input
-						class="input"
-						type="number"
-						name="height"
-						id="height"
-						bind:value={height}
-						disabled={locked}
-					/>
-				</div>
-				<div class="form-control">
-					<label for="width" class="width">
-						<span class="label-text">Width</span>
-					</label>
-					<input
-						class="input"
-						type="number"
-						name="width"
-						id="width"
-						bind:value={width}
-						disabled={locked}
-					/>
+				<div class="flex">
+					<div class="form-control">
+						<label for="height" class="label">
+							<span class="label-text">Height</span>
+						</label>
+						<input
+							class="input"
+							type="number"
+							name="height"
+							id="height"
+							bind:value={height}
+							disabled={locked}
+						/>
+					</div>
+					<div class="form-control">
+						<label for="width" class="width">
+							<span class="label-text">Width</span>
+						</label>
+						<input
+							class="input"
+							type="number"
+							name="width"
+							id="width"
+							bind:value={width}
+							disabled={locked}
+						/>
+					</div>
 				</div>
 				<div class="form-control">
 					<label for="image" class="label"><span class="label-text">Image</span></label>
@@ -135,8 +137,8 @@
 		<div class="w-48 h-48 rounded-full animate-spin border-4 border-current border-t-transparent"></div>
 	</div>
 	{/if}
-	{#if placeholderImg && !form}
-		<div class="card shadow-xl w-96">
+	{#if placeholderImg && !$page.form}
+		<div class="card shadow-xl w-1/3">
 			<figure><img src={placeholderImg.src} alt="result" /></figure>
 			<div class="card-body">
 				<h2 class="card-title">This is the image you selected</h2>
@@ -149,11 +151,15 @@
 						<div class="stat-title">Height</div>
 						<div class="stat-value">{imgHeight}</div>
 					</div>
+					<div class="stat">
+						<div class="stat-title">Aspect Ratio</div>
+						<div class="stat-value">{(imgHeight / imgWidth).toFixed(2)}</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	{/if}
-	{#if form?.success}
+	{#if $page.form?.success}
 		<div
 			class="fixed -top-14 left-0 h-screen w-screen flex justify-center overflow-hidden pointer-events-none"
 		>
@@ -167,13 +173,13 @@
 			/>
 		</div>
 		<div class="card shadow-xl w-96">
-			<figure><img src={form.image} alt="result" /></figure>
+			<figure><img src={$page.form.image} alt="result" /></figure>
 			<div class="card-body">
 				<h2 class="card-title">Here's the Image</h2>
 				<div class="card-actions justify-end">
 					<a
 						download="image.{format}"
-						href={window.URL.createObjectURL(convertBase64ToBlob(form.image))}
+						href={window.URL.createObjectURL(convertBase64ToBlob($page.form.image))}
 						class="btn btn-success">Download</a
 					>
 				</div>
