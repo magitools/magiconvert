@@ -14,8 +14,8 @@
 	};
 </script>
 
-<footer class="footer items-center p-4">
-	<div class="items-center grid-flow-col">
+<footer class="flex flex-col md:flex-row justify-between items-center p-4">
+	<div>
 		<p>
 			&copy; {new Date().getFullYear()} Matteo Gassend
 		</p>
