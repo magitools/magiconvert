@@ -23,7 +23,7 @@
     </section>
     <section class="w-full text-center mt-5">
         <h2 class="font-bold text-2xl">Supported Formats and Conversions</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
             {#each formatList as format}
                 <div class="w-full h-full flex flex-col justify-center items-center">
                     <a href="/convert?format={format}" class="w-44 h-44 rounded-full border-current border flex justify-center items-center transition-transform hover:scale-105"><p class="font-semibold text-xl">{format}</p></a>

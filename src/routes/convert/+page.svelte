@@ -12,7 +12,7 @@
 	let imgWidth = 0;
 	let locked = false;
 	let loading = false;
-	let format: string = $page.url.searchParams.get('format') || $page.form.format || "webp";
+	let format: string = $page.url.searchParams.get('format') || $page?.form?.format || "webp";
 	let placeholderImg: HTMLImageElement | null;
 
 	$: if (placeholderImg) {
@@ -67,8 +67,8 @@
 	};
 </script>
 
-<div class="w-full h-full flex justify-center gap-4 items-center">
-	<div class="card w-1/3 shadow-xl">
+<div class="w-full h-full flex flex-col md:flex-row justify-center gap-4 items-center">
+	<div class="card w-full md:w-1/3 shadow-xl">
 		<form
 			method="post"
 			enctype="multipart/form-data"
@@ -140,7 +140,7 @@
 	</div>
 	{/if}
 	{#if placeholderImg}
-		<div class="card shadow-xl w-1/3">
+		<div class="card shadow-xl w-full md:w-1/3">
 			<figure><img src={placeholderImg.src} alt="result" /></figure>
 			<div class="card-body">
 				<h2 class="card-title">This is the image you selected</h2>
