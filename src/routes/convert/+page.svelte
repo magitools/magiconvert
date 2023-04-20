@@ -12,19 +12,21 @@
 	let imgWidth = 0;
 	let locked = false;
 	let loading = false;
-	let format: string = $page.url.searchParams.get('format') || "webp";
-	let placeholderImg: HTMLImageElement;
+	let format: string = $page.url.searchParams.get('format') || $page.form.format || "webp";
+	let placeholderImg: HTMLImageElement | null;
 
 	$: if (placeholderImg) {
 		placeholderImg.onload = () => {
-			imgHeight = placeholderImg.height;
-			imgWidth = placeholderImg.width;
+			imgHeight = placeholderImg?.height!;
+			imgWidth = placeholderImg?.width!;
 		};
 	}
 
 	$: if ($page.form) {
 		loading = false;
 		locked = false;
+		placeholderImg = null;
+		format = $page.form.format
 	}
 
 	$: if (files && files.length > 0) {
@@ -137,7 +139,7 @@
 		<div class="w-48 h-48 rounded-full animate-spin border-4 border-current border-t-transparent"></div>
 	</div>
 	{/if}
-	{#if placeholderImg && !$page.form}
+	{#if placeholderImg}
 		<div class="card shadow-xl w-1/3">
 			<figure><img src={placeholderImg.src} alt="result" /></figure>
 			<div class="card-body">
@@ -159,7 +161,7 @@
 			</div>
 		</div>
 	{/if}
-	{#if $page.form?.success}
+	{#if $page.form?.success && !placeholderImg}
 		<div
 			class="fixed -top-14 left-0 h-screen w-screen flex justify-center overflow-hidden pointer-events-none"
 		>

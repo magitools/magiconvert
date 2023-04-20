@@ -11,7 +11,8 @@ export const actions = {
         const result = await sharp(image).resize({width: parseInt(width), height: parseInt(height)}).toFormat(format!).toBuffer()
         return {
             success: true,
-            image: `data:image/webp;base64,${result.toString("base64")}`
+            image: `data:image/webp;base64,${result.toString("base64")}`,
+            format
         }
     }
 }
