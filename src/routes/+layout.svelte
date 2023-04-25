@@ -1,31 +1,21 @@
 <script>
-    import "../app.css";
-	import Footer from "$lib/footer.svelte";
-    import Header from "$lib/header.svelte";
+	// Your selected Skeleton theme:
+	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
+
+	// This contains the bulk of Skeletons required styles:
+	import '@skeletonlabs/skeleton/styles/all.css';
+
+	// Finally, your application's global stylesheet (sometimes labeled 'app.css')
+	import '../app.postcss';
+    import { AppShell } from '@skeletonlabs/skeleton';
+	import Footer from '$lib/footer.svelte';
+	import Header from '$lib/header.svelte';
 </script>
-
-<Header />
-<main>
-    <slot />
-</main>
-<Footer />
-
-
-<style lang="postcss">
-    :global(html), :global(body) {
-        margin: 0;
-        padding: 0;
-    }
-
-    :global(body) {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        width: 100vw;
-    }
-    
-    :global(main) {
-        flex: 1;
-    }
-
-</style>
+ 
+<AppShell>
+	<svelte:fragment slot="header"><Header /></svelte:fragment>
+	<!-- Router Slot -->
+	<slot />
+	<!-- ---- / ---- -->
+	<svelte:fragment slot="pageFooter"><Footer /></svelte:fragment>
+</AppShell>

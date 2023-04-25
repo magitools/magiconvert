@@ -2,32 +2,34 @@
 	import { formatList } from '$lib/utils';
 </script>
 
-<div class="w-full h-full space-y-4">
+<div class="container mx-auto space-y-4">
 	<div class="w-full flex flex-col justify-center items-center">
-		<div class="max-w-lg text-center">
+		<div class="text-center mt-4">
 			<div>
-				<h1 class="text-5xl font-bold">Welcome to MagiConvert</h1>
+				<h1>Welcome to MagiConvert</h1>
 				<p class="py-6">your one-stop shop for image conversion and resizing</p>
-				<a href="/convert" class="btn btn-primary">Get Converting</a>
+				<a href="/convert" class="btn variant-filled">Get Converting</a>
 			</div>
 		</div>
 	</div>
-    <section class="w-full text-center">
+    <section class="w-full text-center flex flex-col justify-center items-center">
         <h2 class="font-bold text-2xl">Easier Done than Said</h2>
-        <ul class="steps steps-vertical lg:steps-horizontal">
-            <li class="step step-primary">Select your image</li>
-            <li class="step step-primary">Select your format and size</li>
-            <li class="step step-primary">Click the button</li>
-            <li class="step step-primary">Download your created image</li>
-        </ul>
+        <div class="">
+            <ul class="list">
+                <li class=""><span  class="badge-icon p-4 variant-soft-primary">1</span><span class="flex-auto">Select your image</span></li>
+                <li class=""><span  class="badge-icon p-4 variant-soft-primary">2</span><span class="flex-auto">Select your format and size</span></li>
+                <li class=""><span  class="badge-icon p-4 variant-soft-primary">3</span><span class="flex-auto">Click the button</span></li>
+                <li class=""><span  class="badge-icon p-4 variant-soft-primary">4</span><span class="flex-auto">Download your created image</span></li>
+            </ul>
+        </div>
     </section>
     <section class="w-full text-center mt-5">
         <h2 class="font-bold text-2xl">Supported Formats and Conversions</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
+        <div class="gap-4 flex justify-evenly items-center flex-wrap">
             {#each formatList as format}
-                <div class="w-full h-full flex flex-col justify-center items-center">
-                    <a href="/convert?format={format}" class="w-44 h-44 rounded-full border-current border flex justify-center items-center transition-transform hover:scale-105"><p class="font-semibold text-xl">{format}</p></a>
-                </div>
+                <a class="w-32 h-32 rounded-full flex justify-center items-center border border-surface-500" href="/convert?format={format}">
+                    <span>{format}</span>
+                </a>
             {/each}
         </div>
     </section>
