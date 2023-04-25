@@ -15,7 +15,7 @@
     <section class="w-full text-center flex flex-col justify-center items-center">
         <h2 class="font-bold text-2xl">Easier Done than Said</h2>
         <div class="">
-            <ul class="list text-center">
+            <ul class="list">
                 <li class=""><span  class="badge-icon p-4 variant-soft-primary">1</span><span class="flex-auto">Select your image</span></li>
                 <li class=""><span  class="badge-icon p-4 variant-soft-primary">2</span><span class="flex-auto">Select your format and size</span></li>
                 <li class=""><span  class="badge-icon p-4 variant-soft-primary">3</span><span class="flex-auto">Click the button</span></li>
@@ -25,9 +25,9 @@
     </section>
     <section class="w-full text-center mt-5">
         <h2 class="font-bold text-2xl">Supported Formats and Conversions</h2>
-        <div class="logo-cloud grid-cols-1 lg:grid-cols-3 gap-1">
+        <div class="gap-4 flex justify-evenly items-center flex-wrap">
             {#each formatList as format}
-                <a class="logo-item" href="/convert?format={format}">
+                <a class="w-32 h-32 rounded-full flex justify-center items-center border border-surface-500" href="/convert?format={format}">
                     <span>{format}</span>
                 </a>
             {/each}
