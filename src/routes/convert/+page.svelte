@@ -16,7 +16,7 @@
 	let format: string = $page.url.searchParams.get('format') || $page?.form?.format || 'webp';
 	let placeholderImg: HTMLImageElement | null;
 
-	$: if (placeholderImg) {
+	$: if (placeholderImg?.src) {
 		placeholderImg.onload = () => {
 			imgHeight = placeholderImg?.height!;
 			imgWidth = placeholderImg?.width!;
@@ -32,8 +32,8 @@
 
 	$: if (files && files.length > 0) {
 		const reader = new FileReader();
+		placeholderImg = null;
 		loading = true;
-		console.log($page.form);
 		reader.readAsDataURL(files[0]);
 		reader.onload = (e) => {
 			if (e.target && e.target.result) {
@@ -43,9 +43,14 @@
 		};
 	}
 
-	const handleSubmit: SubmitFunction = async () => {
+	const handleSubmit: SubmitFunction = async ({data}) => {
+		console.log("sending data");
+		console.log(data)
 		loading = true;
 		placeholderImg = null;
+		height = 0;
+		width = 0;
+
 	};
 
 	const convertBase64ToBlob = (b64: string) => {
@@ -126,7 +131,7 @@
 					type="submit"
 					disabled={!files || loading}
 				>
-					{#if loading} <ProgressRadial width="w-6" /> {/if}send</button
+					{#if loading} <ProgressRadial width="w-4" /> {/if}send</button
 				>
 			</div>
 		</form>
