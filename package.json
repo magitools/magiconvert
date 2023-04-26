@@ -37,6 +37,7 @@
 	"type": "module",
 	"dependencies": {
 		"@vercel/analytics": "^1.0.0",
+		"blurhash": "^2.0.5",
 		"sharp": "^0.32.0",
 		"svelte-confetti": "^1.2.2"
 	}
