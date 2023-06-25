@@ -1,7 +1,14 @@
+import type { User } from "@prisma/client";
+import { fail, type Actions } from "@sveltejs/kit"
 import sharp from "sharp"
 
-export const actions = {
+export const actions: Actions = {
     default: async (event) => {
+        if (!event.cookies.get("auth_cookie")) {
+            throw fail(500, {message: "not enough credits remaining"})
+        }
+        const user = JSON.parse(event.cookies.get("auth_cookie")!) as {id: number}
+        await prisma.user.update({data: {credits: {decrement: 1}}, where: {id: user.id}})
         const data = await event.request.formData()
         const blob = data.get("image") as Blob
         const image = await blob.arrayBuffer()

@@ -8,7 +8,7 @@
 			<div>
 				<h1>Welcome to MagiConvert</h1>
 				<p class="py-6">your one-stop shop for image conversion and resizing</p>
-				<a href="/convert" class="btn variant-filled">Get Converting</a>
+				<a href="/app" class="btn variant-filled">Get Converting</a>
 			</div>
 		</div>
 	</div>
@@ -27,7 +27,7 @@
         <h2 class="font-bold text-2xl">Supported Formats and Conversions</h2>
         <div class="gap-4 flex justify-evenly items-center flex-wrap">
             {#each formatList as format}
-                <a class="w-32 h-32 rounded-full flex justify-center items-center border border-surface-500" href="/convert?format={format}">
+                <a class="w-32 h-32 rounded-full flex justify-center items-center border border-surface-500" href="/app/convert?format={format}">
                     <span>{format}</span>
                 </a>
             {/each}

@@ -1,16 +1,14 @@
+import type { Actions } from "@sveltejs/kit";
 import { decode, encode } from "blurhash";
 import sharp from "sharp";
 
-function getReasonableDimensions(n,k){
-    const max = ~~Math.sqrt(n);
-    return Array.from({length: max}, (_,i,a) => [n%(max-i),max-i])
-                .sort((a,b) => a[0] - b[0])
-                .slice(0,k)
-                .map(t => [Math.floor(n/t[1]), t[1]]);
-  }
-
-export const actions = {
+export const actions: Actions = {
     default: async (event) => {
+        if (!event.cookies.get("auth_cookie")) {
+            throw fail(500, {message: "not enough credits remaining"})
+        }
+        const user = JSON.parse(event.cookies.get("auth_cookie")!) as {id: number}
+        await prisma.user.update({data: {credits: {decrement: 1}}, where: {id: user.id}})
         const data = await event.request.formData()
         const file = data.get("image") as File;
         const blob = data.get("image") as Blob;
