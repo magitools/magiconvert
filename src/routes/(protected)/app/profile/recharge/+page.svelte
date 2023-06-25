@@ -20,7 +20,7 @@
 </script>
 
 <h1>here you can recharge your credits</h1>
-each credit costs 0.{data.price.unit_amount}€
+each credit costs {(data.price.unit_amount/100).toFixed(2)}€
 
 <label for="quantity" class="label">
 	<span>Quantity</span>
