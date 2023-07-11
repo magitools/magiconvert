@@ -1,6 +1,7 @@
 import type { Actions } from "@sveltejs/kit";
 import { decode, encode } from "blurhash";
 import sharp from "sharp";
+import {prisma} from "$lib/server/prisma"
 
 export const actions: Actions = {
     default: async (event) => {
