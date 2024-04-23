@@ -50,8 +50,12 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@adonisjs/ally": "^5.0.2",
+    "@adonisjs/auth": "^9.2.0",
     "@adonisjs/core": "^6.8.0",
+    "@adonisjs/session": "^7.4.0",
     "@libsql/kysely-libsql": "^0.3.0",
+    "edge.js": "^6.0.2",
     "kysely": "^0.27.3",
     "reflect-metadata": "^0.2.2"
   },

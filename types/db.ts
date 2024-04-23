@@ -28,6 +28,7 @@ export interface Users {
   google_id: string | null;
   id: number;
   updated_at: string;
+  username: string;
 }
 
 export interface DB {
