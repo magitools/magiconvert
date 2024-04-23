@@ -24,4 +24,3 @@ export default class MakeMigration extends BaseCommand {
     })
   }
 }
-

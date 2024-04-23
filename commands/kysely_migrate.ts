@@ -1,6 +1,6 @@
 import { BaseCommand } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
-import path from "node:path"
+import path from 'node:path'
 import { db } from '#services/db'
 import fs from 'node:fs/promises'
 import { FileMigrationProvider, Migrator } from 'kysely'
@@ -9,7 +9,7 @@ export default class KyselyMigrate extends BaseCommand {
   static commandName = 'kysely:migrate'
   static description = 'Migrate the database by executing pending migrations'
   static options: CommandOptions = {
-    startApp: true
+    startApp: true,
   }
 
   declare migrator: Migrator

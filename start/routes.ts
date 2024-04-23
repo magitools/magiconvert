@@ -7,13 +7,15 @@
 |
 */
 
-import AppsController from '#controllers/apps_controller'
-import AuthController from '#controllers/auth_controller'
+const AppsController = () => import('#controllers/apps_controller')
+const AuthController = () => import('#controllers/auth_controller')
 import router from '@adonisjs/core/services/router'
 
-router.get('/', [AppsController, "index"])
+router.get('/', [AppsController, 'index'])
 
-router.group(() => {
-  router.get("/:provider/redirect", [AuthController, "redirect"]).where("provider", /github/)
-  router.get("/:provider/callback", [AuthController, "callback"]).where("provider", /github/)
-}).prefix("/auth")
+router
+  .group(() => {
+    router.get('/:provider/redirect', [AuthController, 'redirect']).where('provider', /github/)
+    router.get('/:provider/callback', [AuthController, 'callback']).where('provider', /github/)
+  })
+  .prefix('/auth')

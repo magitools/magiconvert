@@ -13,7 +13,7 @@ export default defineConfig({
   commands: [() => import('@adonisjs/core/commands')],
   assetsBundler: false,
   unstable_assembler: {
-    onBuildStarting: [() => import("@adonisjs/vite/build_hook")]
+    onBuildStarting: [() => import('@adonisjs/vite/build_hook')],
   },
   /*
   |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ export default defineConfig({
     () => import('@adonisjs/auth/auth_provider'),
     () => import('@adonisjs/ally/ally_provider'),
     () => import('@adonisjs/session/session_provider'),
-    () => import('@adonisjs/vite/vite_provider')
+    () => import('@adonisjs/vite/vite_provider'),
   ],
 
   /*
@@ -72,13 +72,14 @@ export default defineConfig({
     ],
     forceExit: false,
   },
-  metaFiles: [{
-    pattern: 'resources/views/**/*.edge',
-    reloadServer: false,
-  },
-  {
-    pattern: 'public/**',
-    reloadServer: false,
-  }
-  ]
+  metaFiles: [
+    {
+      pattern: 'resources/views/**/*.edge',
+      reloadServer: false,
+    },
+    {
+      pattern: 'public/**',
+      reloadServer: false,
+    },
+  ],
 })

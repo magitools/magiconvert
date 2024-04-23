@@ -1,7 +1,7 @@
 import { BaseCommand } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
-import path from "node:path"
-import fs from "node:fs/promises"
+import path from 'node:path'
+import fs from 'node:fs/promises'
 import { FileMigrationProvider, Migrator } from 'kysely'
 import { db } from '#services/db'
 
@@ -9,7 +9,7 @@ export default class KyselyRollback extends BaseCommand {
   static commandName = 'kysely:rollback'
   static description = 'Rollback the database by running down method on the migration files'
   static options: CommandOptions = {
-    startApp: true
+    startApp: true,
   }
 
   declare migrator: Migrator

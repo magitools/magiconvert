@@ -9,9 +9,11 @@ const authConfig = defineConfig({
     web: sessionGuard({
       useRememberMeTokens: false,
       provider: configProvider.create(async () => {
-        const { SessionKyselyUserProvider } = await import("../app/auth_providers/session_user_provider.js")
+        const { SessionKyselyUserProvider } = await import(
+          '../app/auth_providers/session_user_provider.js'
+        )
         return new SessionKyselyUserProvider()
-      })
+      }),
     }),
   },
 })
@@ -23,8 +25,8 @@ export default authConfig
  * guards.
  */
 declare module '@adonisjs/auth/types' {
-  interface Authenticators extends InferAuthenticators<typeof authConfig> { }
+  interface Authenticators extends InferAuthenticators<typeof authConfig> {}
 }
 declare module '@adonisjs/core/types' {
-  interface EventsList extends InferAuthEvents<Authenticators> { }
+  interface EventsList extends InferAuthEvents<Authenticators> {}
 }
