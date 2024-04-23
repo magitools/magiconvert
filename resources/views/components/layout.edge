@@ -6,7 +6,7 @@
   @vite(["resources/js/app.js", "resources/css/app.css"])
 </head>
 <body class="w-full h-screen flex flex-col">
-    @if(header || true)
+    @if(header ?? true)
     <header>
   <nav class="border-b border-gray-200 bg-white" x-data="{sidebarOpen:false}">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
