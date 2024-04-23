@@ -23,6 +23,7 @@ export interface Transactions {
 
 export interface Users {
   created_at: string;
+  credits: number;
   email: string;
   github_id: string | null;
   google_id: string | null;
