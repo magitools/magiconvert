@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Titre de la page</title>
+  @vite(["resources/js/app.js", "resources/css/app.css"])
+</head>
+<body>
+    <main>
+  {{{await $slots.main()}}}
+    </main>
+</body>
+</html>

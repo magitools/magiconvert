@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node bin/server.js",
     "build": "node ace build",
-    "dev": "node ace serve --watch",
+    "dev": "node ace serve --hmr",
     "test": "node ace test",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -47,17 +47,21 @@
     "pino-pretty": "^11.0.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vite": "^5.2.10"
   },
   "dependencies": {
     "@adonisjs/ally": "^5.0.2",
     "@adonisjs/auth": "^9.2.0",
     "@adonisjs/core": "^6.8.0",
     "@adonisjs/session": "^7.4.0",
+    "@adonisjs/vite": "3.0.0-11",
     "@libsql/kysely-libsql": "^0.3.0",
+    "@tailwindcss/postcss": "4.0.0-alpha.14",
     "edge.js": "^6.0.2",
     "kysely": "^0.27.3",
-    "reflect-metadata": "^0.2.2"
+    "reflect-metadata": "^0.2.2",
+    "tailwindcss": "4.0.0-alpha.14"
   },
   "hotHook": {
     "boundaries": [
