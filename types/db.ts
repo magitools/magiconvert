@@ -2,13 +2,14 @@ import type { ColumnType } from 'kysely'
 
 export type Generated<T> =
   T extends ColumnType<infer S, infer I, infer U>
-    ? ColumnType<S, I | undefined, U>
-    : ColumnType<T, T | undefined, T>
+  ? ColumnType<S, I | undefined, U>
+  : ColumnType<T, T | undefined, T>
 
 export interface Images {
   created_at: string
   id: number
-  path: string
+  original_path: string
+  converted_path: string
   updated_at: string
   user_id: number
 }
