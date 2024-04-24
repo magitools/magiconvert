@@ -14,11 +14,18 @@ import { middleware } from './kernel.js'
 
 router.group(() => {
   router.get('/', [AppsController, 'index'])
+
 })
 
-router
-  .group(() => {
-    router.get('/:provider/redirect', [AuthController, 'redirect']).where('provider', /github/)
-    router.get('/:provider/callback', [AuthController, 'callback']).where('provider', /github/)
-  })
-  .prefix('/auth')
+router.group(() => {
+  router.get("/login", [AuthController, 'login']).as("login")
+  router
+    .group(() => {
+      router.get('/:provider/redirect', [AuthController, 'redirect']).where('provider', /github/).as("auth_redirect")
+      router.get('/:provider/callback', [AuthController, 'callback']).where('provider', /github/).as("auth_callback")
+    })
+    .prefix('/auth')
+
+})
+
+
