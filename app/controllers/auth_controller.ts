@@ -2,6 +2,10 @@ import { db } from '#services/db'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class AuthController {
+  async login({ view }: HttpContext) {
+    return view.render("pages/login")
+  }
+
   async redirect({ params, ally }: HttpContext) {
     const driver = ally.use(params.provider)
     return driver.redirect()
