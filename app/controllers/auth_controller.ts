@@ -39,6 +39,6 @@ export default class AuthController {
       .where('email', '=', driverUser.email)
       .executeTakeFirst()
     await auth.use('web').login(dbUser)
-    return response.redirect().toPath('/')
+    return response.redirect().toRoute("app_index")
   }
 }

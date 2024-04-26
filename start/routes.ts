@@ -12,10 +12,14 @@ const AuthController = () => import('#controllers/auth_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 
-router.group(() => {
-  router.get('/', [AppsController, 'index'])
-
+router.get("/", ({ view }) => {
+  return view.render("pages/home")
 })
+
+router.group(() => {
+  router.get('/', [AppsController, 'index']).as('app_index')
+
+}).prefix("/app").middleware(middleware.auth())
 
 router.group(() => {
   router.get("/login", [AuthController, 'login']).as("login")

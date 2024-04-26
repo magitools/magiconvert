@@ -3,6 +3,6 @@ import { db } from '#services/db'
 
 export default class AppsController {
   async index({ view }: HttpContext) {
-    return view.render('pages/home')
+    return view.render('pages/app/index')
   }
 }
