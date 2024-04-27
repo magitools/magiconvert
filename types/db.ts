@@ -5,6 +5,7 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
   : ColumnType<T, T | undefined, T>;
 
 export interface Blurs {
+  b_64: string;
   created_at: string;
   id: number;
   updated_at: string;
