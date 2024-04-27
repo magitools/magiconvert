@@ -1,4 +1,18 @@
 @layout()
 blurs go here
 <a href="{{route('app_blur.create')}}">Create</a>
+
+<table>
+  <thead>
+  </thead>
+  <tbody>
+    @each(blur in blurs)
+      <tr>
+        <td>{{blur.id}}</td>
+        <td>{{blur.value}}</td>
+        <td><img src="data:image/png;base64,{{blur.b_64}}" /></td>
+    @end
+  </tbody>
+</table>
+
 @end
