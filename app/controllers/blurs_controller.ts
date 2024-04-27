@@ -39,7 +39,9 @@ export default class BlursController {
         resolve(encode(new Uint8ClampedArray(buffer), width, height, 4, 4))
       })
     })
-    const b64 = Buffer.from(decode(encodedString, 200, 200)).toString("base64")
+    const decodedBuffer = decode(encodedString, 200, 200)
+    const decodedPngBuffer = await sharp(decodedBuffer, { raw: { width: 200, height: 200, channels: 1 } }).png().toBuffer()
+    const b64 = `data:image/png;base64,${decodedPngBuffer.toString("base64")}`
     await db.insertInto("blurs").values({ user_id: user.id, value: encodedString, b_64: b64, created_at: new Date().getTime(), updated_at: new Date().getTime() }).execute()
     return response.redirect().toRoute("app_blur.index")
   }

@@ -10,7 +10,7 @@ blurs go here
       <tr>
         <td>{{blur.id}}</td>
         <td>{{blur.value}}</td>
-        <td><img src="data:image/png;base64,{{blur.b_64}}" /></td>
+        <td><img src="{{blur.b_64}}" /></td>
         <td>
           <form method="post" action="{{route('app_blur.destroy', [blur.id])}}?_method=DELETE">
             {{csrfField()}}
