@@ -58,13 +58,17 @@
     "@adonisjs/auth": "^9.2.0",
     "@adonisjs/core": "^6.8.0",
     "@adonisjs/session": "^7.4.0",
+    "@adonisjs/shield": "^8.1.1",
     "@adonisjs/vite": "3.0.0-11",
     "@libsql/kysely-libsql": "^0.3.0",
     "@tailwindcss/forms": "^0.5.7",
+    "@vinejs/vine": "^2.0.0",
     "alpinejs": "^3.13.9",
+    "blurhash": "^2.0.5",
     "edge.js": "^6.0.2",
     "kysely": "^0.27.3",
-    "reflect-metadata": "^0.2.2"
+    "reflect-metadata": "^0.2.2",
+    "sharp": "^0.33.3"
   },
   "hotHook": {
     "boundaries": [

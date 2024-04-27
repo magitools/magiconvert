@@ -36,6 +36,8 @@ export default defineConfig({
     () => import('@adonisjs/ally/ally_provider'),
     () => import('@adonisjs/session/session_provider'),
     () => import('@adonisjs/vite/vite_provider'),
+    () => import('@adonisjs/core/providers/vinejs_provider'),
+    () => import('@adonisjs/shield/shield_provider')
   ],
 
   /*
