@@ -11,6 +11,7 @@ const AppsController = () => import('#controllers/apps_controller')
 const AuthController = () => import('#controllers/auth_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+import BlursController from '#controllers/blurs_controller'
 
 router.get("/", ({ view }) => {
   return view.render("pages/home")
@@ -18,7 +19,7 @@ router.get("/", ({ view }) => {
 
 router.group(() => {
   router.get('/', [AppsController, 'index']).as('app_index')
-
+  router.resource("/blur", BlursController).as('app_blur')
 }).prefix("/app").middleware(middleware.auth())
 
 router.group(() => {

@@ -1,0 +1,7 @@
+@layout()
+  <form enctype="multipart/form-data" method="post" action="{{route('app_blur.store')}}">
+    {{csrfField()}}
+    <input type="file" name="image" placeholder="choose a picture" accept="image/*" />
+  <button type="submit">send</button>
+  </form>
+@end
