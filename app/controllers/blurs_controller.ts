@@ -16,6 +16,11 @@ export default class BlursController {
   async create({ view }: HttpContext) {
     return view.render("pages/app/blur/create")
   }
+  async show({ request, auth, view }: HttpContext) {
+    const user = auth.getUserOrFail()
+    const blur = await db.selectFrom("blurs").selectAll().where("user_id", "=", user.id).where("id", "=", request.param("id")).executeTakeFirstOrThrow()
+    return view.render("pages/app/blur/show", { blur })
+  }
   async destroy({ response, request, auth }: HttpContext) {
     const user = auth.getUserOrFail()
     const blur = await db.selectFrom("blurs").selectAll().where("id", "=", request.param("id")).executeTakeFirst()

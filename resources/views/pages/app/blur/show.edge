@@ -1,0 +1,6 @@
+@layout()
+ @slot("head")
+    @vite(["resources/js/pages/blur/show.js"])
+ @end
+ <canvas data-hash="{{blur.value}}" id="hash" />
+@end

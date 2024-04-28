@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <title>Titre de la page</title>
   @vite(["resources/js/app.js", "resources/css/app.css"])
+    @if($slots.head)
+      {{{await $slots.head()}}}
+    @end
 </head>
 <body class="w-full h-screen flex flex-col">
     @if(header ?? true)
