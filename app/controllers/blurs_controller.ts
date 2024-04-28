@@ -1,5 +1,5 @@
 import { blurCreateValidator } from '#validators/blur_create'
-import { decode, encode } from "blurhash"
+import { encode } from "blurhash"
 import type { HttpContext } from '@adonisjs/core/http'
 import sharp from "sharp"
 import { db } from '#services/db'
@@ -38,16 +38,13 @@ export default class BlursController {
     if (!payload.image.filePath) {
       return "ko";
     }
-    const encodedString: string = await new Promise((resolve, reject) => {
-      sharp(payload.image.filePath).raw().ensureAlpha().toBuffer((err, buffer, { width, height }) => {
+    const { encodedString, metadata }: { encodedString: string, metadata: Record<string, unknown> } = await new Promise((resolve, reject) => {
+      sharp(payload.image.filePath).raw().ensureAlpha().toBuffer((err, buffer, { width, height, format }) => {
         if (err) return reject(err)
-        resolve(encode(new Uint8ClampedArray(buffer), width, height, 4, 4))
+        resolve({ encodedString: encode(new Uint8ClampedArray(buffer), width, height, 4, 4), metadata: { width, height, format } })
       })
     })
-    const decodedBuffer = decode(encodedString, 200, 200)
-    const decodedPngBuffer = await sharp(decodedBuffer, { raw: { width: 200, height: 200, channels: 1 } }).png().toBuffer()
-    const b64 = `data:image/png;base64,${decodedPngBuffer.toString("base64")}`
-    await db.insertInto("blurs").values({ user_id: user.id, value: encodedString, b_64: b64, created_at: new Date().getTime(), updated_at: new Date().getTime() }).execute()
+    await db.insertInto("blurs").values({ user_id: user.id, value: encodedString, metadata: JSON.stringify(metadata), created_at: new Date().getTime(), updated_at: new Date().getTime() }).execute()
     return response.redirect().toRoute("app_blur.index")
   }
 }
