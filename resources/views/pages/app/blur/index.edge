@@ -4,6 +4,9 @@ blurs go here
 
 <table>
   <thead>
+    <tr>
+      <th>#</th>
+      <th>Blurhash</th>
   </thead>
   <tbody>
     @each(blur in blurs)
@@ -11,7 +14,7 @@ blurs go here
         <td>{{blur.id}}</td>
         <td>{{blur.value}}</td>
         <td>
-          <a href="{{route('app_blur.show', [blur.id])}}">show</a>
+          <a up-layer="new" href="{{route('app_blur.show', [blur.id])}}">show</a>
           <form method="post" action="{{route('app_blur.destroy', [blur.id])}}?_method=DELETE">
             {{csrfField()}}
             <button type="submit">delete</button>
