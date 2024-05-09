@@ -1,6 +1,8 @@
-@layout()
+@layout({fullwidth: unpoly})
  @slot("head")
     @vite(["resources/js/pages/blur/show.js"])
  @end
- <canvas data-hash="{{blur.value}}" data-meta="{{blur.metadata}}" id="hash" />
+ <div class="w-full h-full">
+ <canvas class="w-full h-full" data-hash="{{blur.value}}" data-meta="{{blur.metadata}}" id="hash" />
+ </div>
 @end

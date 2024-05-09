@@ -109,7 +109,12 @@
     </header>
     @end
     <main class="flex-1">
+      @if(fullwidth ?? false)
+
+      <div id="content" class="h-full">
+      @else
       <div id="content" class="mx-auto max-w-7xl sm:px-6 lg:px-8 h-full">
+      @end
         {{{await $slots.main()}}}
       </div>
     </main>
