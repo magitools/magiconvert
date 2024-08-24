@@ -2,6 +2,9 @@
 
 ## a simple image conversion and resizing utility, built with Sveltekit and Sharp
 
+> [!WARNING]
+> this project is temporarily on hold as it is being rewritten in another framework and with more thought put into its design and functionality; will update this once the rewrite is done :)
+
 ![Discord](https://img.shields.io/discord/937624611384864809)
 ![GitHub License](https://img.shields.io/github/license/matfire/MagiConvert)
 
